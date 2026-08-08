@@ -57,8 +57,10 @@ export default function Projects() {
     <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-6xl mx-auto" ref={ref}>
         <SectionTitle
+          number="05."
+          tag="work"
           title="Featured Projects"
-          subtitle="A showcase of my recent work"
+          subtitle="A showcase of my recent work — built end-to-end with real problem solving"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">

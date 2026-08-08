@@ -23,8 +23,10 @@ export default function Certificates() {
     <section id="certificates" className="py-24 px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-6xl mx-auto" ref={ref}>
         <SectionTitle
+          number="03."
+          tag="achievements"
           title="Certificates"
-          subtitle="Achievements and certifications"
+          subtitle="Achievements and certifications I've earned"
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">

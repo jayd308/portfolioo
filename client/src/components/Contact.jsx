@@ -126,8 +126,10 @@ export default function Contact() {
     <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-6xl mx-auto" ref={ref}>
         <SectionTitle
+          number="06."
+          tag="contact"
           title="Get In Touch"
-          subtitle="Let's work together"
+          subtitle="Have a project in mind or want to collaborate? Let's talk"
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">

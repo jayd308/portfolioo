@@ -27,21 +27,19 @@ function getIcon(name) {
   return iconMap.default;
 }
 
+const categoryColors = {
+  Frontend: 'from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30',
+  Backend: 'from-green-500/20 to-emerald-500/20 text-green-300 border-green-500/30',
+  Database: 'from-yellow-500/20 to-orange-500/20 text-yellow-300 border-yellow-500/30',
+  Programming: 'from-purple-500/20 to-fuchsia-500/20 text-purple-300 border-purple-500/30',
+  Tools: 'from-gray-500/20 to-slate-500/20 text-gray-300 border-gray-500/30',
+  AI: 'from-cyan-500/20 to-pink-500/20 text-cyan-300 border-cyan-500/30',
+};
+
 export default function SkillCard({ skill }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
   const Icon = getIcon(skill.name);
-
-  const categoryColors = {
-    Frontend: 'from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30',
-    Backend: 'from-green-500/20 to-emerald-500/20 text-green-300 border-green-500/30',
-    Database: 'from-yellow-500/20 to-orange-500/20 text-yellow-300 border-yellow-500/30',
-    DevOps: 'from-red-500/20 to-pink-500/20 text-red-300 border-red-500/30',
-    Design: 'from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30',
-    Language: 'from-primary-500/20 to-accent-500/20 text-primary-300 border-primary-500/30',
-    Tool: 'from-gray-500/20 to-slate-500/20 text-gray-300 border-gray-500/30',
-  };
-
-  const badgeClass = categoryColors[skill.category] || categoryColors.Tool;
+  const badgeClass = categoryColors[skill.category] || categoryColors.Tools;
 
   return (
     <motion.div
@@ -55,20 +53,19 @@ export default function SkillCard({ skill }) {
       <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary-500/0 to-accent-500/0 group-hover:from-primary-500/30 group-hover:to-accent-500/30 transition-all duration-500 blur-sm" />
 
       <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 group-hover:border-primary-500/30 transition-all duration-300">
-        {/* Category badge */}
         <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[10px] font-medium bg-gradient-to-r border ${badgeClass}`}>
           {skill.category}
         </div>
 
-        {/* Icon */}
         <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500/20 to-accent-500/20 border border-white/10 flex items-center justify-center mb-4">
           <Icon size={24} className="text-primary-400 group-hover:text-accent-400 transition-colors" />
         </div>
 
-        {/* Name */}
-        <h3 className="text-white font-semibold text-sm mb-3">{skill.name}</h3>
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-white font-semibold text-sm">{skill.name}</h3>
+          <span className="font-mono text-[11px] text-accent-400">{skill.level}%</span>
+        </div>
 
-        {/* Progress bar */}
         <div className="h-2 bg-white/5 rounded-full overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
@@ -77,7 +74,6 @@ export default function SkillCard({ skill }) {
             className="h-full rounded-full bg-gradient-to-r from-primary-500 to-accent-500"
           />
         </div>
-        <p className="text-gray-500 text-xs mt-1.5 text-right">{skill.level}%</p>
       </div>
     </motion.div>
   );

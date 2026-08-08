@@ -1,4 +1,4 @@
-import { Code2 } from 'lucide-react'
+import { Code2, ArrowUp } from 'lucide-react'
 
 const socialLinks = [
   {
@@ -60,6 +60,8 @@ const socialLinks = [
 export default function Footer() {
   const year = new Date().getFullYear()
 
+  const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+
   return (
     <footer className="border-t border-white/5 bg-gray-950/50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -86,6 +88,13 @@ export default function Footer() {
                 <Icon />
               </a>
             ))}
+            <button
+              onClick={scrollTop}
+              aria-label="Back to top"
+              className="p-2 ml-2 text-gray-400 hover:text-accent-300 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)] transition-all duration-300"
+            >
+              <ArrowUp className="w-5 h-5" />
+            </button>
           </div>
         </div>
       </div>

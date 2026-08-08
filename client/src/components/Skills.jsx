@@ -4,15 +4,7 @@ import { useInView } from 'react-intersection-observer'
 import SectionTitle from './SectionTitle'
 import SkillCard from './SkillCard'
 
-const categories = [
-  'All',
-  'Frontend',
-  'Backend',
-  'Database',
-  'Programming',
-  'Tools',
-  'AI',
-]
+const categories = ['All', 'Frontend', 'Backend', 'Database', 'Programming', 'Tools', 'AI']
 
 const skillsData = [
   { name: 'HTML', category: 'Frontend', level: 90 },
@@ -39,6 +31,9 @@ export default function Skills() {
   const [activeCategory, setActiveCategory] = useState('All')
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
 
+  const countFor = (cat) =>
+    cat === 'All' ? skillsData.length : skillsData.filter((s) => s.category === cat).length
+
   const filtered =
     activeCategory === 'All'
       ? skillsData
@@ -48,11 +43,12 @@ export default function Skills() {
     <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-6xl mx-auto" ref={ref}>
         <SectionTitle
+          number="04."
+          tag="stack"
           title="Skills & Technologies"
-          subtitle="Technologies I work with"
+          subtitle="The tools I use to build and ship products"
         />
 
-        {/* Category filters */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -70,15 +66,18 @@ export default function Skills() {
               }`}
             >
               {cat}
+              <span
+                className={`ml-1.5 font-mono text-[10px] ${
+                  activeCategory === cat ? 'text-white/70' : 'text-gray-500'
+                }`}
+              >
+                ({countFor(cat)})
+              </span>
             </button>
           ))}
         </motion.div>
 
-        {/* Skills grid */}
-        <motion.div
-          layout
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-        >
+        <motion.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <AnimatePresence mode="popLayout">
             {filtered.map((skill, i) => (
               <motion.div

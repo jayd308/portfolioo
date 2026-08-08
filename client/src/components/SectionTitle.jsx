@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-export default function SectionTitle({ title, subtitle, align = 'center' }) {
+export default function SectionTitle({ number, tag, title, subtitle, align = 'center' }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
   return (
@@ -10,8 +10,25 @@ export default function SectionTitle({ title, subtitle, align = 'center' }) {
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`mb-12 md:mb-16 ${align === 'center' ? 'text-center' : 'text-left'}`}
+      className={`mb-14 md:mb-16 ${align === 'center' ? 'text-center' : 'text-left'}`}
     >
+      {(number || tag) && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className={`flex items-center gap-3 mb-4 font-mono ${
+            align === 'center' ? 'justify-center' : 'justify-start'
+          }`}
+        >
+          {number && <span className="text-primary-400 text-sm">{number}</span>}
+          <span className="h-px w-10 bg-gradient-to-r from-primary-500 to-accent-500" />
+          {tag && (
+            <span className="text-[11px] uppercase tracking-[0.3em] text-gray-500">{tag}</span>
+          )}
+        </motion.div>
+      )}
+
       <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-primary-300 to-accent-400">
           {title}

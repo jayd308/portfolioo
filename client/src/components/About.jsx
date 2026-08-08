@@ -1,27 +1,32 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { BookOpen, Code2, FolderOpen, Cpu, Download } from 'lucide-react'
+import { FolderKanban, Cpu, Briefcase, GraduationCap, Download, MapPin, Mail } from 'lucide-react'
 import toast from 'react-hot-toast'
 import SectionTitle from './SectionTitle'
 import damour from '../assets/damour.png'
 
 const stats = [
-  { icon: BookOpen, value: '1', suffix: '', label: 'Software Development Student', color: 'from-purple-500 to-violet-600' },
-  { icon: Code2, value: '3', suffix: '+', label: 'MERN Stack Developer', color: 'from-cyan-500 to-blue-600' },
-  { icon: FolderOpen, value: '5', suffix: '+', label: 'Projects Built', color: 'from-violet-500 to-purple-600' },
-  { icon: Cpu, value: '15', suffix: '+', label: 'Technologies Learned', color: 'from-purple-500 to-cyan-500' },
+  { icon: FolderKanban, value: '15', suffix: '+', label: 'Projects Built', color: 'from-purple-500 to-violet-600' },
+  { icon: Cpu, value: '20', suffix: '+', label: 'Technologies', color: 'from-cyan-500 to-blue-600' },
+  { icon: Briefcase, value: '3', suffix: '+ yrs', label: 'Experience', color: 'from-violet-500 to-purple-600' },
+  { icon: GraduationCap, value: '3.8', suffix: '/4.0', label: 'GPA', color: 'from-purple-500 to-cyan-500' },
+];
+
+const currentlyLearning = [
+  'Machine Learning', 'TypeScript', 'DevOps', 'GraphQL', 'Next.js', 'System Design',
 ];
 
 function CountUp({ target, suffix, inView }) {
   const [count, setCount] = useState(0);
+  const isDecimal = target.includes('.');
 
   useEffect(() => {
     if (!inView) return;
     let start = 0;
-    const end = parseInt(target, 10);
+    const end = parseFloat(target);
     if (start === end) return;
-    const duration = 2000;
-    const incrementTime = 30;
+    const duration = 1800;
+    const incrementTime = 24;
     const step = (end / duration) * incrementTime;
 
     const timer = setInterval(() => {
@@ -30,7 +35,7 @@ function CountUp({ target, suffix, inView }) {
         setCount(end);
         clearInterval(timer);
       } else {
-        setCount(Math.floor(start));
+        setCount(isDecimal ? Math.round(start * 10) / 10 : Math.floor(start));
       }
     }, incrementTime);
 
@@ -39,7 +44,7 @@ function CountUp({ target, suffix, inView }) {
 
   return (
     <span>
-      {count}
+      {isDecimal ? count.toFixed(1) : count}
       {suffix}
     </span>
   );
@@ -60,12 +65,16 @@ export default function About() {
 
   return (
     <section id="about" className="relative py-24 bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 overflow-hidden">
-      {/* Decorative blobs */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-purple-600/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-cyan-600/10 rounded-full blur-3xl" />
 
       <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle title="About Me" subtitle="Get to know me" />
+        <SectionTitle
+          number="01."
+          tag="about"
+          title="About Me"
+          subtitle="Full-stack developer focused on building reliable, scalable web experiences"
+        />
 
         <div className="grid lg:grid-cols-2 gap-16 items-center mt-16">
           {/* Left — Image */}
@@ -76,32 +85,31 @@ export default function About() {
             animate={inView ? 'visible' : 'hidden'}
             custom={0}
           >
-            {/* Gradient ring */}
             <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-violet-500 via-purple-500 to-cyan-500 p-1 shadow-2xl shadow-purple-500/20">
               <div className="w-full h-full rounded-full overflow-hidden bg-gray-900 flex items-center justify-center">
                 <img src={damour} alt="NSHIMIYIMANA Jean Damour" className="w-full h-full object-cover" />
               </div>
             </div>
 
-            {/* Floating decorations */}
-            {[
-              { className: 'absolute -top-4 -right-4 w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-500/30 backdrop-blur-sm', delay: 0 },
-              { className: 'absolute -bottom-4 -left-4 w-14 h-14 rounded-full bg-cyan-500/20 border border-cyan-500/30 backdrop-blur-sm', delay: 1 },
-              { className: 'absolute top-1/2 -right-8 w-8 h-8 rounded-lg bg-violet-500/20 border border-violet-500/30 backdrop-blur-sm', delay: 2 },
-              { className: 'absolute -bottom-2 right-8 w-10 h-10 rounded-full bg-purple-400/20 border border-purple-400/30 backdrop-blur-sm', delay: 0.5 },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                className={item.className}
-                animate={{ y: [0, -10, 0], rotate: [0, 5, -5, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  delay: item.delay,
-                  ease: 'easeInOut',
-                }}
-              />
-            ))}
+            {/* Floating status chips */}
+            <motion.div
+              className="absolute top-6 -right-2 sm:right-4 flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gray-900/90 backdrop-blur-md border border-white/10 font-mono text-xs text-gray-300 shadow-lg"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-60" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-400" />
+              </span>
+              open_to_work
+            </motion.div>
+            <motion.div
+              className="absolute bottom-8 -left-2 sm:left-2 px-3.5 py-2 rounded-xl bg-gray-900/90 backdrop-blur-md border border-white/10 font-mono text-xs text-accent-300 shadow-lg"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              {'>'} MERN · Python · AI
+            </motion.div>
           </motion.div>
 
           {/* Right — Text */}
@@ -114,20 +122,47 @@ export default function About() {
           >
             <div className="space-y-5 text-gray-300 text-lg leading-relaxed">
               <p>
-                My name is <span className="text-white font-semibold">NSHIMIYIMANA Jean Damour</span>. I am a Software
-                Development student passionate about creating innovative software
-                solutions.
+                My name is <span className="text-white font-semibold">NSHIMIYIMANA Jean Damour</span>. I'm a
+                Software Development student passionate about building{' '}
+                <span className="text-white">innovative, production-ready software</span> —
+                from clean UI to robust APIs and AI integration.
               </p>
               <p>
-                My journey started from curiosity about technology and
-                programming. Through continuous learning from Level 3 to Level 5,
-                I developed strong skills in full-stack development, databases,
-                APIs, and artificial intelligence.
+                Starting from raw curiosity, I've worked through Level 3 to Level 5,
+                sharpening skills across <span className="text-white">full-stack development</span>,{' '}
+                <span className="text-white">databases</span>,{' '}
+                <span className="text-white">REST APIs</span>, and{' '}
+                <span className="text-white">artificial intelligence</span> — shipping projects
+                end-to-end rather than stopping at tutorials.
               </p>
             </div>
 
+            {/* Info strip */}
+            <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm">
+              <span className="flex items-center gap-2 text-gray-400">
+                <MapPin className="w-4 h-4 text-primary-400" /> Kigali, Rwanda
+              </span>
+              <span className="flex items-center gap-2 text-gray-400">
+                <Mail className="w-4 h-4 text-primary-400" /> jeandamour157@gmail.com
+              </span>
+            </div>
+
+            {/* Currently learning */}
+            <div>
+              <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-gray-500 mb-3">
+                {'//'} currently learning
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {currentlyLearning.map((item) => (
+                  <span key={item} className="code-chip">
+                    <span className="text-accent-400">+</span> {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
             {/* Stats grid */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {stats.map(({ icon: Icon, value, suffix, label, color }, i) => (
                 <motion.div
                   key={label}
@@ -141,10 +176,10 @@ export default function About() {
                   <div className={`inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br ${color} mb-3`}>
                     <Icon className="w-5 h-5 text-white" />
                   </div>
-                  <div className="text-3xl font-bold text-white">
+                  <div className="text-2xl font-bold text-white font-mono">
                     <CountUp target={value} suffix={suffix} inView={inView} />
                   </div>
-                  <div className="text-sm text-gray-400 mt-1">{label}</div>
+                  <div className="text-xs text-gray-400 mt-1">{label}</div>
                 </motion.div>
               ))}
             </div>

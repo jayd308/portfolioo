@@ -202,6 +202,8 @@ export default function Education() {
     <section id="education" className="py-24 px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-6xl mx-auto">
         <SectionTitle
+          number="02."
+          tag="journey"
           title="Education Journey"
           subtitle="My academic path to becoming a software engineer"
         />
