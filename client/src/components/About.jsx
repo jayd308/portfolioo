@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { BookOpen, Code2, FolderOpen, Cpu, Download } from 'lucide-react'
 import toast from 'react-hot-toast'
-import SectionTitle from './SectionTitle';
+import SectionTitle from './SectionTitle'
+import damour from '../assets/damour.png'
 
 const stats = [
   { icon: BookOpen, value: '1', suffix: '', label: 'Software Development Student', color: 'from-purple-500 to-violet-600' },
@@ -78,10 +79,7 @@ export default function About() {
             {/* Gradient ring */}
             <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-violet-500 via-purple-500 to-cyan-500 p-1 shadow-2xl shadow-purple-500/20">
               <div className="w-full h-full rounded-full overflow-hidden bg-gray-900 flex items-center justify-center">
-                {/* Placeholder gradient if no image */}
-                <div className="w-full h-full bg-gradient-to-br from-violet-600/40 to-cyan-600/40 flex items-center justify-center text-6xl font-bold text-white/80">
-                  JD
-                </div>
+                <img src={damour} alt="NSHIMIYIMANA Jean Damour" className="w-full h-full object-cover" />
               </div>
             </div>
 

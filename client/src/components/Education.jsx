@@ -3,6 +3,7 @@ import { useInView } from 'react-intersection-observer'
 import { useRef } from 'react'
 import SectionTitle from './SectionTitle'
 import { BookOpen, Code2, Brain, Rocket } from 'lucide-react'
+import school from '../assets/rszca9c903.jpg'
 
 const timelineData = [
   {
@@ -23,6 +24,7 @@ const timelineData = [
       'Programming fundamentals, web development basics, and database introduction. First steps into the world of software engineering.',
     tags: ['HTML', 'CSS', 'JavaScript Basics', 'Database Intro'],
     icon: Code2,
+    image: school,
     color: 'from-purple-500 to-fuchsia-600',
   },
   {
@@ -33,6 +35,7 @@ const timelineData = [
       'Advanced programming concepts, backend development with Node.js and Express, and software engineering principles.',
     tags: ['JavaScript', 'Node.js', 'Express', 'MongoDB', 'REST API'],
     icon: Brain,
+    image: school,
     color: 'from-fuchsia-500 to-cyan-500',
   },
   {
@@ -43,6 +46,7 @@ const timelineData = [
       'Full-stack application development with React, Python programming, Artificial Intelligence, advanced software projects, and professional development practices.',
     tags: ['React.js', 'Python', 'AI/ML', 'Full-Stack MERN', 'DevOps'],
     icon: Rocket,
+    image: school,
     color: 'from-cyan-500 to-blue-500',
   },
 ]
@@ -65,6 +69,9 @@ function TimelineItem({ item, index }) {
             className="flex justify-end pr-8"
           >
             <div className="glass-card rounded-2xl p-6 max-w-md border border-white/10 hover:border-white/20 transition-all duration-300 group">
+              {item.image && (
+                <img src={item.image} alt={item.title} className="w-full h-40 object-cover rounded-xl mb-4 border border-white/10" />
+              )}
               <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${item.color} text-white mb-3`}>
                 {item.year}
               </div>
@@ -115,6 +122,9 @@ function TimelineItem({ item, index }) {
             className="flex justify-start pl-8"
           >
             <div className="glass-card rounded-2xl p-6 max-w-md border border-white/10 hover:border-white/20 transition-all duration-300 group">
+              {item.image && (
+                <img src={item.image} alt={item.title} className="w-full h-40 object-cover rounded-xl mb-4 border border-white/10" />
+              )}
               <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${item.color} text-white mb-3`}>
                 {item.year}
               </div>
@@ -160,6 +170,9 @@ function TimelineItem({ item, index }) {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="glass-card rounded-2xl p-5 flex-1 border border-white/10"
         >
+          {item.image && (
+            <img src={item.image} alt={item.title} className="w-full h-36 object-cover rounded-xl mb-3 border border-white/10" />
+          )}
           <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${item.color} text-white mb-3`}>
             {item.year}
           </div>

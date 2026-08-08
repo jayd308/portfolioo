@@ -215,6 +215,49 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="space-y-6"
           >
+            <div className="glass-card rounded-2xl p-8 border border-white/10 flex flex-col items-center text-center">
+              <h3 className="text-xl font-bold text-white mb-6">Call Me</h3>
+
+              <motion.div
+                className="relative w-32 h-32 mb-6"
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                {[0, 1, 2].map((i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute inset-0"
+                    style={{ rotate: i * 120 }}
+                    animate={{ rotate: 360 + i * 120 }}
+                    transition={{ duration: 6 + i * 2, repeat: Infinity, ease: 'linear' }}
+                  >
+                    <span className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
+                  </motion.div>
+                ))}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
+                  className="absolute inset-0 rounded-full border-2 border-dashed border-primary-500/40"
+                />
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+                  className="absolute inset-3 rounded-full border border-accent-500/30"
+                />
+                <div className="absolute inset-5 rounded-full bg-gradient-to-br from-primary-600 to-accent-500 flex items-center justify-center glow-primary">
+                  <Phone className="w-7 h-7 text-white" />
+                </div>
+              </motion.div>
+
+              <a
+                href="tel:+250795452115"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-semibold hover:shadow-lg hover:shadow-violet-500/25 hover:scale-105 transition-all duration-300"
+              >
+                <Phone className="w-5 h-5" />
+                +250 795 452 115
+              </a>
+            </div>
+
             <div className="glass-card rounded-2xl p-8 border border-white/10">
               <h3 className="text-xl font-bold text-white mb-6">
                 Contact Info
