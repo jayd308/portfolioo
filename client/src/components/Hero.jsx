@@ -1,7 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Mail, Download, Github, Linkedin, Instagram, Send } from 'lucide-react';
-import toast from 'react-hot-toast';
+import cvUrl from '../assets/Nshimiyimana_Jean_Damour_CV_A1_Iron_Steel.docx?url';
 
 const Scene3D = lazy(() => import('./Scene3D'));
 
@@ -207,11 +207,8 @@ export default function Hero() {
               </a>
 
               <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault()
-                  toast('CV coming soon!', { icon: '📄' })
-                }}
+                href={cvUrl}
+                download="Nshimiyimana_Jean_Damour_CV.docx"
                 className="inline-flex items-center gap-2 px-4 py-3.5 text-sm text-gray-400 hover:text-white transition-colors"
               >
                 <Download className="w-4 h-4" />

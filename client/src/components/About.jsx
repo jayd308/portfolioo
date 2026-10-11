@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { FolderKanban, Cpu, Briefcase, GraduationCap, Download, MapPin, Mail } from 'lucide-react'
-import toast from 'react-hot-toast'
 import SectionTitle from './SectionTitle'
-import damour from '../assets/damour.png'
+import profileImage from '../assets/RRR.jpg'
+import cvUrl from '../assets/Nshimiyimana_Jean_Damour_CV_A1_Iron_Steel.docx?url'
 
 const stats = [
   { icon: FolderKanban, value: '15', suffix: '+', label: 'Projects Built', color: 'from-purple-500 to-violet-600' },
@@ -87,7 +87,7 @@ export default function About() {
           >
             <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-violet-500 via-purple-500 to-cyan-500 p-1 shadow-2xl shadow-purple-500/20">
               <div className="w-full h-full rounded-full overflow-hidden bg-gray-900 flex items-center justify-center">
-                <img src={damour} alt="NSHIMIYIMANA Jean Damour" className="w-full h-full object-cover" />
+                <img src={profileImage} alt="NSHIMIYIMANA Jean Damour" className="w-full h-full object-cover" />
               </div>
             </div>
 
@@ -186,11 +186,8 @@ export default function About() {
 
             {/* CV Button */}
             <motion.a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault()
-                toast('CV coming soon!', { icon: '📄' })
-              }}
+              href={cvUrl}
+              download="Nshimiyimana_Jean_Damour_CV.docx"
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-white/20 text-white font-semibold backdrop-blur-sm hover:bg-white/10 hover:border-white/30 transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
